@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import yaml
 
 
 def extract_position_data(row, side, position):
@@ -82,11 +83,12 @@ def split_positions(data, expected_num):
 
 
 # Initialize Global Parameters
-league_id = 493554
-year = 2018
-current_week = 17
-swid = "{47C30300-F34E-4F8A-808F-02562DA3925D}"
-espn_s2 = "AECKGX7idqLg0P67gnm3%2Bgv%2BdW5zfpqZp%2FcbkYuEfhC115feoA4IoW52DTDHinMYCC0Lpg4yfTwS6jsSVlmeKEYI3yem2EDQgPpL1vkGT8KnxEVg660MSiDoMo9pvHTt2CD3tmGRLqUw3wSncABoxdg8F2NKSWsJvy7gyyn66B5%2B8ILo8kv4G9d4%2BeL%2B1EWLV%2B1woGvkWv%2FJYESJrclvF2UWQZc%2FC5JJlPbVRlvoHiblx2hgZJdg8D38pnUNETyVJbn2rLC5Cxjy%2FLcS7YaAEacY"
+config = yaml.safe_load(open("config/config.yaml"))
+league_id = config['league_id']
+year = config['year']
+current_week = config['current_week']
+swid = config['swid']
+espn_s2 = config['espn_s2']
 
 response = requests.get(
     "https://fantasy.espn.com/apis/v3/games/ffl/seasons/" + str(year) + "/segments/0/leagues/" + str(league_id),

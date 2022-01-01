@@ -5,6 +5,7 @@ __pycache__/
 
 **/output
 **/input
+**/config
 
 # C extensions
 *.so
